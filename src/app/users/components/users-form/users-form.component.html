@@ -1,0 +1,67 @@
+<form [formGroup]="form">
+  <div class="row" [class.invalid]="email.touched && email.invalid">
+    <label for="email">Email:</label>
+    <div class="input">
+      <input type="text" id="email" formControlName="email" />
+      <app-form-error-msg [control]="email"></app-form-error-msg>
+    </div>
+  </div>
+  <ng-container formGroupName="password">
+    <div class="row" [class.invalid]="pass1.touched && pass1.invalid">
+      <label for="pass1">Password:</label>
+      <div class="input">
+        <input type="password" id="pass1" formControlName="pass1" />
+        <app-form-error-msg [control]="pass1"></app-form-error-msg>
+      </div>
+    </div>
+    <div class="row" [class.invalid]="pass2.touched && pass2.invalid">
+      <label for="pass2">Confirm Password:</label>
+      <div class="input">
+        <input type="password" id="pass2" formControlName="pass2" />
+        <app-form-error-msg [control]="pass2"></app-form-error-msg>
+        <app-form-error-msg
+          [showRegardless]="true"
+          [control]="passwordGroup"
+          [customError]="'Passwords do not match'"
+          *ngIf="passwordGroup.invalid && pass1.valid && pass2.valid"
+        ></app-form-error-msg>
+      </div>
+    </div>
+  </ng-container>
+  <div class="row" [class.invalid]="nickname.touched && nickname.invalid">
+    <label for="nickname">Nickname:</label>
+    <div class="input">
+      <input type="text" id="nickname" formControlName="nickname" />
+      <app-form-error-msg [control]="nickname"></app-form-error-msg>
+    </div>
+  </div>
+  <div class="row" [class.invalid]="phoneNumber.touched && phoneNumber.invalid">
+    <label for="phoneNumber">Phone Number:</label>
+    <div class="input">
+      <input type="text" id="phoneNumber" formControlName="phoneNumber" />
+      <app-form-error-msg [control]="phoneNumber"></app-form-error-msg>
+    </div>
+  </div>
+  <div class="row" [class.invalid]="website.touched && website.invalid">
+    <label for="website">Website:</label>
+    <div class="input">
+      <input type="text" id="website" formControlName="website" />
+      <app-form-error-msg [control]="website"></app-form-error-msg>
+    </div>
+  </div>
+  <div class="row terms" [class.invalid]="terms.touched && terms.invalid">
+    <label for="terms">I have read the agreement:</label>
+    <div class="input">
+      <input type="checkbox" id="terms" formControlName="terms" />
+      <app-form-error-msg [control]="terms"></app-form-error-msg>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button type="reset" (click)="cancel.emit()">Cancel</button>
+
+    <button type="submit" (click)="submit()" [disabled]="form.invalid">
+      {{ _user ? "Update" : "Register" }}
+    </button>
+  </div>
+</form>

@@ -1,0 +1,31 @@
+<button (click)="add.emit()" id="add">Add User ➕</button>
+
+<table class="user-table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Nickname</th>
+      <th>Phone Number</th>
+      <th>Website</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ hidePassword(user.password) }}</td>
+      <td>{{ user.nickname }}</td>
+      <td>{{ user.phoneNumber }}</td>
+      <td>{{ user.website }}</td>
+      <td><button (click)="edit.emit(user.id)">✏️</button></td>
+      <td><button (click)="delete.emit(user.id)">❌</button></td>
+    </tr>
+    <tr *ngIf="!users.length">
+      <td colspan="6">No users found</td>
+    </tr>
+  </tbody>
+</table>

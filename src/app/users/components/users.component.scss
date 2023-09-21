@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  padding: 0 15px;
+
+  app-users-list {
+    display: block;
+    width: 60%;
+  }
+
+  app-users-form {
+    width: 40%;
+  }
+}
+h1 {
+  margin: 20px 0;
+  text-align: center;
+}

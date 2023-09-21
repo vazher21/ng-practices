@@ -1,0 +1,15 @@
+<h1>Users page!</h1>
+<div class="wrapper">
+  <app-users-list
+    [users]="users"
+    (delete)="onDelete($event)"
+    (edit)="onEdit($event)"
+    (add)="onAddNewUser()"
+  ></app-users-list>
+  <app-users-form
+    *ngIf="showForm"
+    [userToEdit]="currentUserToEdit"
+    (onSubmit)="onSubmit($event)"
+    (cancel)="onCancel()"
+  ></app-users-form>
+</div>
