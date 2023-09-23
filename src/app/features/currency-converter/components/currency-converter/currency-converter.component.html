@@ -1,0 +1,35 @@
+<h1 style="text-align: center">Currency Converter!</h1>
+<div [formGroup]="form">
+  <div class="conversion-container">
+    <!--    left-->
+    <div class="conversion-group" formGroupName="left">
+      <label for="leftCurrency">Currency</label>
+      <select id="leftCurrency" formControlName="currency">
+        <option value="" disabled selected>Choose currency</option>
+        <option [value]="code" *ngFor="let code of codes$ | async">
+          {{ code }}
+        </option>
+      </select>
+      <br /><br />
+      <label for="leftAmount">Amount</label>
+      <input id="leftAmount" type="number" formControlName="amount" />
+    </div>
+
+    <!--    right-->
+    <div class="conversion-group" formGroupName="right">
+      <label for="rightCurrency">Currency</label>
+      <select id="rightCurrency" formControlName="currency">
+        <option value="" disabled selected>Choose currency</option>
+        <option [value]="code" *ngFor="let code of codes$ | async">
+          {{ code }}
+        </option>
+      </select>
+      <br /><br />
+      <label for="rightAmount">Amount</label>
+      <input id="rightAmount" type="number" formControlName="amount" />
+    </div>
+  </div>
+
+  <!--    error-->
+  <p *ngIf="showError$ | async" style="color: red">Something went wrong</p>
+</div>
