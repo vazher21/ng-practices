@@ -1,0 +1,35 @@
+/* Style for the header element */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+}
+
+/* Style for the navigation links */
+nav {
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+
+    li {
+      margin-right: 20px;
+
+      a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+        transition: color 0.3s;
+        &.active {
+          border-bottom: 1px solid #ff6600;
+        }
+
+        &:hover {
+          color: #ff6600;
+        }
+      }
+    }
+  }
+}

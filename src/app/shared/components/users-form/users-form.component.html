@@ -58,7 +58,9 @@
   </div>
 
   <div class="actions">
-    <button type="reset" (click)="cancel.emit()">Cancel</button>
+    <button type="reset" (click)="cancel.emit()" *ngIf="!hideResetButton">
+      Cancel
+    </button>
 
     <button type="submit" (click)="submit()" [disabled]="form.invalid">
       {{ _user ? "Update" : "Register" }}

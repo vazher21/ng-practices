@@ -1,0 +1,31 @@
+<div class="wrapper">
+  <div class="container">
+    <h1>Login Page!</h1>
+
+    <div class="login-container">
+      <form [formGroup]="form">
+        <div class="row" [class.invalid]="email.touched && email.invalid">
+          <label for="email">Email:</label>
+          <div class="input">
+            <input type="text" id="email" formControlName="email" />
+            <app-form-error-msg [control]="email"></app-form-error-msg>
+          </div>
+        </div>
+        <div class="row" [class.invalid]="password.touched && password.invalid">
+          <label for="password">Password:</label>
+          <div class="input">
+            <input type="password" id="password" formControlName="password" />
+            <app-form-error-msg [control]="password"></app-form-error-msg>
+          </div>
+        </div>
+        <div class="actions">
+          <button [disabled]="form.invalid" type="submit" (click)="onLogin()">
+            Log in
+          </button>
+          <p class="invalid" *ngIf="invalidLogin$ | async">Invalid login :(</p>
+        </div>
+      </form>
+    </div>
+    <p>Dont have an account? <a routerLink="../register">Register</a></p>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+@use "../../../../../variables" as *;
+.wrapper {
+  width: 100%;
+  height: calc(100vh - $header-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 50%;
+}
+p {
+  margin-top: 10px;
+}
+h1 {
+  margin-bottom: 10px;
+}

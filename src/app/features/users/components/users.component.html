@@ -1,14 +1,14 @@
 <h1>Users page!</h1>
 <div class="wrapper">
   <app-users-list
-    [users]="users"
+    [users]="(users$ | async)!"
+    [loggedInUserId]="(loggedInUserId$ | async)!"
     (delete)="onDelete($event)"
     (edit)="onEdit($event)"
-    (add)="onAddNewUser()"
   ></app-users-list>
   <app-users-form
-    *ngIf="showForm"
-    [userToEdit]="currentUserToEdit"
+    *ngIf="showForm$ | async as userData"
+    [userToEdit]="userData!"
     (onSubmit)="onSubmit($event)"
     (cancel)="onCancel()"
   ></app-users-form>

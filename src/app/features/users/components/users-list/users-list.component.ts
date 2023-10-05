@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IUser } from '../../models/user.model';
+import { IUser } from '../../../../shared/models/user.model';
 
 @Component({
   selector: 'app-users-list',
@@ -9,9 +9,9 @@ import { IUser } from '../../models/user.model';
 export class UsersListComponent {
   @Input() users: IUser[] = [];
 
-  @Output() add = new EventEmitter<void>();
   @Output() edit = new EventEmitter<number>();
   @Output() delete = new EventEmitter<number>();
+  @Input() loggedInUserId!: number;
 
   hidePassword(pass: string): string {
     return pass.split('').reduce((a, b) => a + '*', '*');

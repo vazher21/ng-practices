@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IUser } from '../../models/user.model';
-import { passwordCompareValidator } from '../../validatons/confirm-password';
+import { passwordCompareValidator } from '../../../features/users/validatons/confirm-password';
 
 @Component({
   selector: 'app-users-form',
@@ -19,6 +19,8 @@ export class UsersFormComponent {
     this.form.reset();
   }
   _user: IUser | null = null;
+
+  @Input() hideResetButton = false;
 
   @Output() onSubmit = new EventEmitter<IUser>();
   @Output() cancel = new EventEmitter<void>();

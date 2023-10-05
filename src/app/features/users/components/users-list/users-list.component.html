@@ -1,5 +1,3 @@
-<button (click)="add.emit()" id="add">Add User ➕</button>
-
 <table class="user-table">
   <thead>
     <tr>
@@ -21,8 +19,14 @@
       <td>{{ user.nickname }}</td>
       <td>{{ user.phoneNumber }}</td>
       <td>{{ user.website }}</td>
-      <td><button (click)="edit.emit(user.id)">✏️</button></td>
-      <td><button (click)="delete.emit(user.id)">❌</button></td>
+      <ng-container *ngIf="loggedInUserId === user.id; else noRight">
+        <td><button (click)="edit.emit(user.id)">✏️</button></td>
+        <td><button (click)="delete.emit(user.id)">❌</button></td>
+      </ng-container>
+      <ng-template #noRight>
+        <td></td>
+        <td></td
+      ></ng-template>
     </tr>
     <tr *ngIf="!users.length">
       <td colspan="6">No users found</td>

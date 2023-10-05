@@ -1,0 +1,10 @@
+<div class="wrapper">
+  <div class="container">
+    <h1>Registration Page!</h1>
+    <app-users-form
+      [hideResetButton]="true"
+      (onSubmit)="onRegister($event)"
+    ></app-users-form>
+    <p>Already have an account? <a routerLink="../login">Log in</a></p>
+  </div>
+</div>
