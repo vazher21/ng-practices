@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, tap } from 'rxjs';
 import { IUser } from '../models/user.model';
 
-// fake db
-
 class Db {
   private id = 3;
   private _registeredUsers$ = new BehaviorSubject<IUser[]>([
@@ -65,11 +63,24 @@ export class AuthService {
 
   private _loggedInUser$ = new BehaviorSubject<IUser | null>(null);
 
-  public loggedInUser$ = this._loggedInUser$.asObservable();
+  public loggedInUser$ = this._loggedInUser$.pipe(
+    tap((user) => {
+      !user
+        ? localStorage.removeItem('user')
+        : localStorage.setItem('user', JSON.stringify(user));
+    })
+  );
   public isLoggedIn$ = this.loggedInUser$.pipe(map((user) => !!user));
   public registeredUsers$ = this.db.registeredUsers$;
 
-  constructor() {}
+  constructor() {
+    const localStorageUser = localStorage.getItem('user');
+    if (!localStorageUser) {
+      return;
+    }
+    const user = JSON.parse(localStorage.getItem('user')!);
+    this.login(user.email, user.password);
+  }
 
   public register(user: IUser): IUser {
     return this.db.register(user);
@@ -81,7 +92,6 @@ export class AuthService {
   }
   public login(email: string, password: string): IUser | null {
     const foundUser = this.db.login(email, password);
-    console.log(foundUser);
     this._loggedInUser$.next(foundUser);
     return this.db.login(email, password);
   }
